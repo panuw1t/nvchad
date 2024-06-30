@@ -35,4 +35,7 @@ M.ui = {
   telescope = { style = "bordered" }, -- borderless / bordered
 }
 
+-- Set the Lua snippets path
+vim.g.lua_snippets_path = vim.fn.stdpath("config") .. "/lua/lua_snippets"
+
 return M

@@ -4,6 +4,8 @@ require "nvchad.mappings"
 
 local opts = { noremap = true, silent = true }
 local map = vim.keymap.set
+-- Disable mappings
+local nomap = vim.keymap.del
 
 -- Miscellaneous --
 map("n", ";", ":", { desc = "CMD enter command mode" })
@@ -23,14 +25,14 @@ map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 
 -- nvim tree --
 map("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "Toggle NvimTree" })
-map("n", "<leader>e", "<Nop>", { silent = true, desc = "Toggle NvimTree" })
-map("n", "<C-n>", "<Nop>") -- remap no operation
+nomap("n", "<leader>e")
+nomap("n", "<C-n>")
 
 -- telescope --
 map("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "telescope live grep" })
-map("n", "<leader>fw", "<Nop>") -- remap no operation
+nomap("n", "<leader>fw")
 map("n", "<leader><leader>", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
-map("n", "<leader>fb", "<Nop>") -- remap no operation
+nomap("n", "<leader>fb")
 map("n", "<leader>fr", "<cmd>Telescope resume<CR>", { desc = "Telescope resume" })
 map("n", "<leader>fb", "<cmd>Telescope builtin<CR>", { desc = "Telescope resume" })
 map(
@@ -39,3 +41,18 @@ map(
   "<cmd>lua require('telescope.builtin').find_files({ cwd = vim.fn.stdpath 'config' }) <CR>",
   { desc = "Search config file" }
 )
+
+-- toggleable terminal --
+nomap({ "n", "t" }, "<A-i>")
+map({ "n", "t" }, "<A-i>", function()
+  require("nvchad.term").toggle {
+    pos = "float",
+    id = "floatTerm",
+    float_opts = {
+      row = 0.2,
+      col = 0.1,
+      width = 0.7,
+      height = 0.5,
+    },
+  }
+end, { desc = "Terminal Toggle Floating term" })
