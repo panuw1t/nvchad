@@ -20,8 +20,12 @@ map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
 
 -- Navigate buffers --
-map("n", "<S-l>", "<cmd>bnext<CR>", opts)
-map("n", "<S-h>", "<cmd>bprevious<CR>", opts)
+map("n", "<S-l>", function()
+  require("nvchad.tabufline").next()
+end, opts)
+map("n", "<S-h>", function()
+  require("nvchad.tabufline").prev()
+end, opts)
 
 -- nvim tree --
 map("n", "<leader>ee", "<cmd>NvimTreeToggle<CR>", { silent = true, desc = "Toggle NvimTree" })
@@ -34,7 +38,7 @@ nomap("n", "<leader>fw")
 map("n", "<leader><leader>", "<cmd>Telescope buffers<CR>", { desc = "telescope find buffers" })
 nomap("n", "<leader>fb")
 map("n", "<leader>fr", "<cmd>Telescope resume<CR>", { desc = "Telescope resume" })
-map("n", "<leader>fb", "<cmd>Telescope builtin<CR>", { desc = "Telescope resume" })
+map("n", "<leader>fb", "<cmd>Telescope builtin<CR>", { desc = "Telescope builtin" })
 map(
   "n",
   "<leader>fn",
@@ -43,7 +47,7 @@ map(
 )
 
 -- toggleable terminal --
-nomap({ "n", "t" }, "<A-i>")
+nomap({ "n", "t" }, "<a-i>")
 map({ "n", "t" }, "<A-i>", function()
   require("nvchad.term").toggle {
     pos = "float",

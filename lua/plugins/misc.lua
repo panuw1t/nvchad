@@ -1,3 +1,8 @@
+local b = "sh install.sh yarn"
+if vim.fn.executable "pwsh" == 1 then
+  b = "pwsh install.ps1 yarn"
+end
+
 return {
   {
     "numToStr/Comment.nvim",
@@ -21,7 +26,8 @@ return {
     -- build = "sh install.sh yarn",
     event = "VeryLazy",
     -- if on windows
-    build = "pwsh install.ps1 yarn",
+    -- build = "pwsh install.ps1 yarn",
+    build = b,
     config = true,
   },
   {
