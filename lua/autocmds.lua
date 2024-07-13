@@ -12,3 +12,10 @@ autocmd({ "TextYankPost" }, {
 vim.cmd [[ iabbrev waht what
     iabbrev tehn then
 ]]
+
+autocmd("FileType", {
+  pattern = "kotlin",
+  callback = function()
+    vim.bo.shiftwidth = 4
+  end,
+})

@@ -37,4 +37,8 @@ return {
       -- options
     },
   },
+  {
+    event = "FileType kotlin",
+    "https://github.com/udalov/kotlin-vim", -- make nvim know kotlin (for indent etc.)
+  },
 }
