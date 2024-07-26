@@ -60,3 +60,7 @@ map({ "n", "t" }, "<A-i>", function()
     },
   }
 end, { desc = "Terminal Toggle Floating term" })
+
+map("n", "<leader>fm", function()
+  require("conform").format { lsp_fallback = true, timeout_ms = 2000 }
+end, { desc = "format files" })

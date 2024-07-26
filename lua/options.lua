@@ -27,3 +27,5 @@ opt.linebreak = true -- companion to wrap, don't split words
 opt.textwidth = 100
 opt.scrolloff = 8 -- Set scroll off
 -- opt.cursorlineopt = 'both' -- highlight cursorline
+
+opt.swapfile = false
