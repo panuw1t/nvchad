@@ -1,5 +1,4 @@
 # Neovim configure
-
 ## Pre-requisites
 * [Neovim 0.10](https://github.com/sharkdp/fd) ++
 * [Nerd Font ](https://www.nerdfonts.com/)
