@@ -60,4 +60,15 @@ return {
       },
     },
   },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    },
+    opts = function()
+      local opts = require "nvchad.configs.telescope"
+      return opts
+    end,
+  },
 }
