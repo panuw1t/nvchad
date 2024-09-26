@@ -69,6 +69,9 @@ return {
     opts = function()
       local opts = require "nvchad.configs.telescope"
       return opts
+      local options = require "nvchad.configs.telescope"
+      table.insert(options.extensions_list, "fzf")
+      return options
     end,
   },
 }
