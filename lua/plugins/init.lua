@@ -67,9 +67,15 @@ return {
       { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     opts = function()
+      require("telescope").load_extension "fzf"
       local options = require "nvchad.configs.telescope"
-      table.insert(options.extensions_list, "fzf")
       return options
     end,
+  },
+
+  {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2",
+    dependencies = { "nvim-lua/plenary.nvim" },
   },
 }

@@ -12,14 +12,17 @@ M.base46 = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },
   -- },
-  transparency = true,
+  transparency = false,
 }
 
 M.ui = {
   tabufline = {
     enabled = true,
   },
-  nvdash = {
+  telescope = { style = "bordered" }, -- borderless / bordered
+}
+
+M.nvdash = {
     load_on_startup = true,
     header = {
       "██████╗  ██████╗  ██████╗  ██████╗  ██████╗ ",
@@ -28,17 +31,29 @@ M.ui = {
       "██║  ██║██║   ██║██║   ██║██║   ██║██║   ██║",
       "██████╔╝╚██████╔╝╚██████╔╝╚██████╔╝╚██████╔╝",
       "╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝  ╚═════╝ ",
+      "                                            ",
     },
     buttons = {
-      { "  configuration", "enter here", "e $MYVIMRC | :cd %:p:h | pwd" },
-      { "  Find File", "Spc f f", "Telescope find_files" },
-      { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
-      { "  Bookmarks", "Spc m a", "Telescope marks" },
-      { "  Themes", "Spc t h", "Telescope themes" },
-      { "  Mappings", "Spc c h", "NvCheatsheet" },
+      { txt = "  configuration", keys = "enter here", cmd =  "e $MYVIMRC | :cd %:p:h | pwd" },
+      { txt = "  Find File", keys = "Spc f f", cmd = "Telescope find_files" },
+      { txt = "󰈚  Recent Files", keys = "Spc f o", cmd = "Telescope oldfiles" },
+      { txt = "  Bookmarks", keys = "Spc m a", cmd = "Telescope marks" },
+      { txt = "  Themes", keys = "Spc t h", cmd = "Telescope themes" },
+      { txt = "  Mappings", keys = "Spc c h", cmd = "NvCheatsheet" },
+      { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
+
+      {
+        txt = function()
+          local stats = require("lazy").stats()
+          local ms = math.floor(stats.startuptime) .. " ms"
+          return "  Loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms
+        end,
+        hl = "NvDashFooter",
+        no_gap = true,
+      },
+
+      { txt = "─", hl = "NvDashFooter", no_gap = true, rep = true },
     },
-  },
-  telescope = { style = "bordered" }, -- borderless / bordered
 }
 
 -- Set the Lua snippets path

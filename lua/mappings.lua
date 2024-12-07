@@ -64,3 +64,25 @@ end, { desc = "Terminal Toggle Floating term" })
 map("n", "<leader>fm", function()
   require("conform").format { lsp_fallback = true, timeout_ms = 2000 }
 end, { desc = "format files" })
+
+-- harpoon --
+local harpoon = require("harpoon")
+
+nomap("n", "<C-h>")
+nomap("n", "<C-l>")
+nomap("n", "<C-j>")
+nomap("n", "<C-k>")
+
+harpoon:setup()
+
+map("n", "<leader>a", function() harpoon:list():add() end)
+map("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+
+map("n", "<C-h>", function() harpoon:list():select(1) end)
+map("n", "<C-j>", function() harpoon:list():select(2) end)
+map("n", "<C-k>", function() harpoon:list():select(3) end)
+map("n", "<C-l>", function() harpoon:list():select(4) end)
+
+-- Toggle previous & next buffers stored within Harpoon list
+map("n", "<C-S-J>", function() harpoon:list():prev() end)
+map("n", "<C-S-K>", function() harpoon:list():next() end)
