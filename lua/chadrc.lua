@@ -12,12 +12,12 @@ M.base46 = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },
   -- },
-  transparency = false,
+  transparency = true,
 }
 
 M.ui = {
   tabufline = {
-    enabled = true,
+    enabled = false
   },
   telescope = { style = "bordered" }, -- borderless / bordered
 }

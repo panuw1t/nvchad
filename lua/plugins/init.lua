@@ -34,31 +34,23 @@ return {
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
-    opts = {
-      ensure_installed = {
-        "vim",
-        "lua",
-        "vimdoc",
-        "html",
-        "css",
-        "typescript",
-      },
-      textobjects = {
+    opts = function()
+      local options = require "nvchad.configs.treesitter"
+      options.textobjects = {
         select = {
           enable = true,
-          lookahead = true, -- automatically jump forward to textobj, similar to targets.vim
+          lookahead = true,
           keymaps = {
-            -- you can use the capture groups defined in textobjects.scm
-            ["aa"] = "@parameter.outer",
-            ["ia"] = "@parameter.inner",
             ["af"] = "@function.outer",
             ["if"] = "@function.inner",
             ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
+            ["ic"] = { query = "@class.inner", desc = "Select inner part of a class region" },
+            ["as"] = { query = "@local.scope", query_group = "locals", desc = "Select language scope" },
           },
         },
-      },
-    },
+      }
+      return options
+    end,
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -77,5 +69,13 @@ return {
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
+  },
+
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "User FilePost",
+    opts = function()
+      return require "configs.gitsign"
+    end,
   },
 }
